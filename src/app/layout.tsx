@@ -5,9 +5,6 @@ import Navbar from "@/app/components/Navbar";
 import Footer from "./components/Footer";
 import { Inter, Space_Grotesk } from "next/font/google";
 
-// Toastify
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,17 +39,6 @@ export default function RootLayout({
         <main className="px-6 md:px-14 lg:px-28">{children}</main>
 
         <Footer />
-
-        {/* --- Toastify Container --- */}
-        <ToastContainer
-          position="top-right"
-          autoClose={3000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          pauseOnHover
-          theme="dark"
-        />
       </body>
     </html>
   );
