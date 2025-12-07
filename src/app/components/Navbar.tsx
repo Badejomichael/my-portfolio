@@ -48,7 +48,7 @@ export default function Navbar() {
 
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-10">
-            {["About", "Projects", "Contact"].map((item) => (
+            {["About", "Projects", "Contactme"].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -123,7 +123,7 @@ export default function Navbar() {
                 px-6 py-4 rounded-b-2xl
               "
             >
-              {["About", "Projects", "Contact"].map((item) => (
+              {["About", "Projects", "Contactme"].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -152,3 +152,4 @@ export default function Navbar() {
     </>
   );
 }
+
