@@ -71,12 +71,13 @@ export default function Hero() {
             href="#contact"
             className="
             px-6 py-3 rounded-xl font-medium text-black
-            bg-gradient-to-br from-[#5DE4FF] to-[#B57BFF]
-            shadow-[0_0_20px_rgba(93,228,255,0.25)]
-            hover:shadow-[0_0_28px_rgba(93,228,255,0.35)]
-            hover:scale-[1.03]
+            bg-gradient-to-r from-[#FF8AE2] via-[#5DE4FF] to-[#FFE45E]
+            shadow-[0_0_25px_rgba(255,138,226,0.35)]
+            hover:shadow-[0_0_35px_rgba(255,138,226,0.45)]
+            hover:scale-[1.05]
             transition-all duration-300
             "
+
         >
             Hire Me
         </a>
