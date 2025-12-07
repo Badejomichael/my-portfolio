@@ -68,7 +68,7 @@ export default function Hero() {
         >
         {/* Primary Button (Hire Me) */}
         <a
-            href="#contact"
+            href="#contactme"
             className="
             px-6 py-3 rounded-xl font-medium text-black
             bg-gradient-to-br from-[#5DE4FF] to-[#B57BFF]
@@ -112,3 +112,4 @@ export default function Hero() {
     </section>
   );
 }
+
