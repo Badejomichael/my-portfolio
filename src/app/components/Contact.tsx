@@ -3,6 +3,9 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
+import { useEffect } from "react";
+
+
 
 /* ================================
    SUCCESS MODAL COMPONENT
@@ -17,7 +20,7 @@ const SuccessModal = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center" id="contact">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -80,6 +83,16 @@ const SuccessModal = ({
 ================================ */
 export default function Contact() {
   const [modalOpen, setModalOpen] = useState(false);
+
+  useEffect(() => {
+    if (modalOpen) {
+      const timer = setTimeout(() => {
+        setModalOpen(false);
+      }, 3000); // 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [modalOpen]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
