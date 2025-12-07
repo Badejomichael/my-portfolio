@@ -1,13 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { useEffect } from "react";
 
-
-
-/* SUCCESS MODAL COMPONENT */
+/* ================================
+   SUCCESS MODAL COMPONENT
+================================ */
 const SuccessModal = ({
   open,
   onClose,
@@ -15,77 +14,86 @@ const SuccessModal = ({
   open: boolean;
   onClose: () => void;
 }) => {
-  if (!open) return null;
-
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center">
-      {/* Overlay */}
-      <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-        onClick={onClose}
-      />
-
-      {/* Modal */}
-      <motion.div
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 0.35 }}
-        className="relative z-10 bg-[#0d0d12] border border-white/10 rounded-2xl 
-          p-10 w-[90%] max-w-sm text-center shadow-[0_0_40px_rgba(0,0,0,0.45)]"
-      >
-        {/* Animated Checkmark */}
-        <motion.svg
-          width="78"
-          height="78"
-          viewBox="0 0 70 70"
-          className="mx-auto mb-6"
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          className="fixed inset-0 z-[100] flex items-center justify-center"
+          id="contact"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
-          <motion.circle
-            cx="35"
-            cy="35"
-            r="30"
-            stroke="#5DE4FF"
-            strokeWidth="4"
-            fill="none"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.7 }}
+          {/* Overlay */}
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            onClick={onClose}
           />
 
-          <motion.path
-            d="M20 36 L30 46 L50 26"
-            stroke="#B57BFF"
-            strokeWidth="4"
-            fill="none"
-            strokeLinecap="round"
-            initial={{ pathLength: 0 }}
-            animate={{ pathLength: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          />
-        </motion.svg>
+          {/* MODAL */}
+          <motion.div
+            initial={{ scale: 0.85, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            exit={{ scale: 0.85, opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className="relative z-10 bg-[#0d0d12] border border-white/10 rounded-2xl 
+              p-10 w-[90%] max-w-sm text-center shadow-[0_0_40px_rgba(0,0,0,0.45)]"
+          >
+            {/* Animated Checkmark */}
+            <motion.svg
+              width="78"
+              height="78"
+              viewBox="0 0 70 70"
+              className="mx-auto mb-6"
+            >
+              <motion.circle
+                cx="35"
+                cy="35"
+                r="30"
+                stroke="#5DE4FF"
+                strokeWidth="4"
+                fill="none"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.7 }}
+              />
 
-        <h3 className="text-white text-xl font-semibold mb-1">
-          Message Sent!
-        </h3>
+              <motion.path
+                d="M20 36 L30 46 L50 26"
+                stroke="#B57BFF"
+                strokeWidth="4"
+                fill="none"
+                strokeLinecap="round"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              />
+            </motion.svg>
 
-        <p className="text-gray-400 text-sm">
-          Thanks for reaching out. I’ll respond soon.
-        </p>
-      </motion.div>
-    </div>
+            <h3 className="text-white text-xl font-semibold mb-1">
+              Message Sent!
+            </h3>
+
+            <p className="text-gray-400 text-sm">
+              Thanks for reaching out. I’ll respond soon.
+            </p>
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
-/* CONTACT SECTION */
+/* ================================
+   CONTACT SECTION
+================================ */
 export default function Contact() {
   const [modalOpen, setModalOpen] = useState(false);
 
+  // Auto-close modal after 3 seconds
   useEffect(() => {
     if (modalOpen) {
-      const timer = setTimeout(() => {
-        setModalOpen(false);
-      }, 3000); // 3 seconds
-
+      const timer = setTimeout(() => setModalOpen(false), 3000);
       return () => clearTimeout(timer);
     }
   }, [modalOpen]);
@@ -110,7 +118,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full py-24 flex flex-col items-center relative" id="contact">
+    <section className="w-full py-24 flex flex-col items-center relative">
       {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -202,4 +210,3 @@ export default function Contact() {
     </section>
   );
 }
-
