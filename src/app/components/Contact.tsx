@@ -104,10 +104,14 @@ export default function Contact() {
 
     try {
       const formData = new FormData(form);
+      const data = new URLSearchParams(formData as any);
 
       await fetch("https://formsubmit.co/michaeladetola40@gmail.com", {
         method: "POST",
-        body: formData,
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: data.toString(),
       });
 
       form.reset();
