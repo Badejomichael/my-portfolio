@@ -7,9 +7,7 @@ import { useEffect } from "react";
 
 
 
-/* ================================
-   SUCCESS MODAL COMPONENT
-================================ */
+/* SUCCESS MODAL COMPONENT */
 const SuccessModal = ({
   open,
   onClose,
@@ -78,9 +76,7 @@ const SuccessModal = ({
   );
 };
 
-/* ================================
-   CONTACT SECTION
-================================ */
+/* CONTACT SECTION */
 export default function Contact() {
   const [modalOpen, setModalOpen] = useState(false);
 
