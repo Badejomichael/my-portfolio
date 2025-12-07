@@ -18,7 +18,7 @@ const SuccessModal = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center" id="contact">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
@@ -110,7 +110,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full py-24 flex flex-col items-center relative">
+    <section className="w-full py-24 flex flex-col items-center relative" id="contact">
       {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -202,3 +202,4 @@ export default function Contact() {
     </section>
   );
 }
+
