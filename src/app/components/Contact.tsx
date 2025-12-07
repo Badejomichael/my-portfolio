@@ -19,7 +19,6 @@ const SuccessModal = ({
       {open && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center"
-          id="contact"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -122,7 +121,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="w-full py-24 flex flex-col items-center relative">
+    <section className="w-full py-24 flex flex-col items-center relative" id="contact">
       {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -214,3 +213,4 @@ export default function Contact() {
     </section>
   );
 }
+
