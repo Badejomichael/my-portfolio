@@ -1,25 +1,29 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
 /* ================================
-   SUCCESS MODAL COMPONENT
+   TYPES
 ================================ */
-const SuccessModal = ({
-  open,
+type SendStatus = "idle" | "sending" | "success";
+
+/* ================================
+   STATUS MODAL COMPONENT
+================================ */
+const StatusModal = ({
+  status,
   onClose,
 }: {
-  open: boolean;
+  status: SendStatus;
   onClose: () => void;
 }) => {
   return (
     <AnimatePresence>
-      {open && (
+      {status !== "idle" && (
         <motion.div
           className="fixed inset-0 z-[100] flex items-center justify-center"
-          id="contactt"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -37,46 +41,70 @@ const SuccessModal = ({
             exit={{ scale: 0.85, opacity: 0 }}
             transition={{ duration: 0.35 }}
             className="relative z-10 bg-[#0d0d12] border border-white/10 rounded-2xl 
-              p-10 w-[90%] max-w-sm text-center shadow-[0_0_40px_rgba(0,0,0,0.45)]"
+            p-10 w-[90%] max-w-sm text-center shadow-[0_0_40px_rgba(0,0,0,0.45)]"
           >
-            {/* Animated Checkmark */}
-            <motion.svg
-              width="78"
-              height="78"
-              viewBox="0 0 70 70"
-              className="mx-auto mb-6"
-            >
-              <motion.circle
-                cx="35"
-                cy="35"
-                r="30"
-                stroke="#5DE4FF"
-                strokeWidth="4"
-                fill="none"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 0.7 }}
-              />
+            {/* SENDING */}
+            {status === "sending" && (
+              <>
+                <motion.div
+                  className="w-12 h-12 mx-auto mb-6 rounded-full 
+                  border-4 border-[#5DE4FF]/30 border-t-[#5DE4FF]"
+                  animate={{ rotate: 360 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1,
+                    ease: "linear",
+                  }}
+                />
+                <h3 className="text-white text-xl font-semibold">
+                  Sending message…
+                </h3>
+                <p className="text-gray-400 text-sm mt-1">
+                  Please wait a moment
+                </p>
+              </>
+            )}
 
-              <motion.path
-                d="M20 36 L30 46 L50 26"
-                stroke="#B57BFF"
-                strokeWidth="4"
-                fill="none"
-                strokeLinecap="round"
-                initial={{ pathLength: 0 }}
-                animate={{ pathLength: 1 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-              />
-            </motion.svg>
+            {/* SUCCESS */}
+            {status === "success" && (
+              <>
+                <motion.svg
+                  width="78"
+                  height="78"
+                  viewBox="0 0 70 70"
+                  className="mx-auto mb-6"
+                >
+                  <motion.circle
+                    cx="35"
+                    cy="35"
+                    r="30"
+                    stroke="#5DE4FF"
+                    strokeWidth="4"
+                    fill="none"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.7 }}
+                  />
+                  <motion.path
+                    d="M20 36 L30 46 L50 26"
+                    stroke="#B57BFF"
+                    strokeWidth="4"
+                    fill="none"
+                    strokeLinecap="round"
+                    initial={{ pathLength: 0 }}
+                    animate={{ pathLength: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  />
+                </motion.svg>
 
-            <h3 className="text-white text-xl font-semibold mb-1">
-              Message Sent!
-            </h3>
-
-            <p className="text-gray-400 text-sm">
-              Thanks for reaching out. I’ll respond soon.
-            </p>
+                <h3 className="text-white text-xl font-semibold mb-1">
+                  Message Sent!
+                </h3>
+                <p className="text-gray-400 text-sm">
+                  Thanks for reaching out. I’ll respond soon.
+                </p>
+              </>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -88,21 +116,15 @@ const SuccessModal = ({
    CONTACT SECTION
 ================================ */
 export default function Contact() {
-  const [modalOpen, setModalOpen] = useState(false);
-
-  // Auto-close modal after 3 seconds
-  useEffect(() => {
-    if (modalOpen) {
-      const timer = setTimeout(() => setModalOpen(false), 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [modalOpen]);
+  const [status, setStatus] = useState<SendStatus>("idle");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.currentTarget;
 
     try {
+      setStatus("sending"); // open modal immediately
+
       const formData = new FormData(form);
       const data = new URLSearchParams(formData as any);
 
@@ -115,15 +137,20 @@ export default function Contact() {
       });
 
       form.reset();
-      setModalOpen(true);
+      setStatus("success");
+
+      setTimeout(() => setStatus("idle"), 3000);
     } catch (error) {
-      console.log(error);
+      console.error(error);
+      setStatus("idle");
     }
   };
 
   return (
-    <section className="w-full py-24 flex flex-col items-center relative"
-      id="contact">
+    <section
+      className="w-full py-24 flex flex-col items-center relative"
+      id="contact"
+    >
       {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -135,7 +162,6 @@ export default function Contact() {
         <h2 className="text-white text-4xl md:text-5xl font-semibold">
           Contact Me
         </h2>
-
         <div className="w-24 h-[3px] bg-[#5DE4FF] mt-3 mx-auto rounded-full" />
       </motion.div>
 
@@ -150,18 +176,16 @@ export default function Contact() {
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
           <input type="hidden" name="_captcha" value="false" />
 
-          {/* NAME */}
           <div className="flex flex-col gap-2">
             <label className="text-gray-300 text-sm">Name</label>
             <input
               name="name"
               required
               className="border border-white/10 rounded-xl p-4 bg-[#111115] 
-              text-white outline-none focus:border-[#5DE4FF] transition-all"
+              text-white outline-none focus:border-[#5DE4FF]"
             />
           </div>
 
-          {/* EMAIL */}
           <div className="flex flex-col gap-2">
             <label className="text-gray-300 text-sm">Email</label>
             <input
@@ -169,11 +193,10 @@ export default function Contact() {
               name="email"
               required
               className="border border-white/10 rounded-xl p-4 bg-[#111115] 
-              text-white outline-none focus:border-[#5DE4FF] transition-all"
+              text-white outline-none focus:border-[#5DE4FF]"
             />
           </div>
 
-          {/* MESSAGE */}
           <div className="flex flex-col gap-2">
             <label className="text-gray-300 text-sm">Message</label>
             <textarea
@@ -181,25 +204,22 @@ export default function Contact() {
               rows={5}
               required
               className="border border-white/10 rounded-xl p-4 bg-[#111115] 
-              text-white outline-none resize-none focus:border-[#5DE4FF] transition-all"
-            ></textarea>
+              text-white outline-none resize-none focus:border-[#5DE4FF]"
+            />
           </div>
 
-          {/* BUTTON */}
           <button
             type="submit"
+            disabled={status === "sending"}
             className="w-full py-3 mt-2 text-black font-semibold rounded-xl
             bg-gradient-to-br from-[#5DE4FF] to-[#B57BFF]
-            shadow-[0_0_20px_rgba(93,228,255,0.25)]
-            hover:shadow-[0_0_25px_rgba(93,228,255,0.35)]
             hover:scale-[1.03] active:scale-[0.99]
-            transition-all duration-300"
+            transition-all duration-300 disabled:opacity-60"
           >
-            Send Message
+            {status === "sending" ? "Sending..." : "Send Message"}
           </button>
         </form>
 
-        {/* WHATSAPP */}
         <a
           href="https://wa.me/+2349053267316"
           target="_blank"
@@ -210,8 +230,8 @@ export default function Contact() {
         </a>
       </motion.div>
 
-      {/* SUCCESS MODAL */}
-      <SuccessModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      {/* STATUS MODAL */}
+      <StatusModal status={status} onClose={() => setStatus("idle")} />
     </section>
   );
 }
