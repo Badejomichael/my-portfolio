@@ -2,7 +2,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/app/components/Navbar";
-import Footer from "./components/Footer";
+import Footer from "@/app/components/Footer";
+import ResumeDownloadButton from "@/app/components/ResumeDownloadButton";
 import { Inter, Space_Grotesk } from "next/font/google";
 
 
@@ -17,7 +18,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Michael — Portfolio",
+  title: "Michael - Portfolio",
   description: "Modern portfolio built with Next.js + TailwindCSS",
 };
 
@@ -36,7 +37,10 @@ export default function RootLayout({
       <body className="bg-[#0A0A0F] text-white">
         <Navbar />
         
-        <main className="px-6 md:px-14 lg:px-28">{children}</main>
+        <main className="px-6 md:px-14 lg:px-28">
+          {children}
+          <ResumeDownloadButton />
+        </main>
 
         <Footer />
       </body>

@@ -11,7 +11,7 @@ export default function Projects() {
   const projects = [
     {
       video: "/project1.mp4",
-      title: "KalshiForge – Prediction Market Creator",
+      title: "KalshiForge - Prediction Market Creator",
       desc: "A future-concept simulation inspired by Kalshi where users build custom prediction markets with financial-grade UX and smooth state transitions.",
       tags: ["Next.js", "TypeScript", "Framer Motion", "Recharts"],
       live: "https://kalshiforge.netlify.app",
@@ -19,7 +19,7 @@ export default function Projects() {
     },
     {
       video: "/project2.mp4",
-      title: "MicroKalshi – Event Market Dashboard",
+      title: "MicroKalshi - Event Market Dashboard",
       desc: "A real-time animated market dashboard inspired by Kalshi with clean hierarchy and smooth transitions.",
       tags: ["Next.js", "TypeScript", "Framer Motion"],
       live: "https://micro-kalshi.vercel.app",
@@ -27,7 +27,7 @@ export default function Projects() {
     },
     {
       video: "/project3.mp4",
-      title: "ClaimFlow – Mock Airdrop dApp",
+      title: "ClaimFlow - Mock Airdrop dApp",
       desc: "A Web3-focused, animated claim interface using RainbowKit + Wagmi.",
       tags: ["Next.js", "RainbowKit", "Wagmi", "Web3 UX"],
       live: "https://claim-flowhq.vercel.app",
@@ -43,7 +43,7 @@ export default function Projects() {
     },
     {
       video: "/project5.mp4",
-      title: "Chef’s Secret – Recipe Explorer",
+      title: "Chef’s Secret - Recipe Explorer",
       desc: "A clean recipe browsing experience powered by Spoonacular API.",
       tags: ["HTML", "CSS", "Bootstrap", "JavaScript"],
       live: "https://mikelchef-secret.netlify.app/",

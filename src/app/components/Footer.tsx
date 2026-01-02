@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -41,7 +42,7 @@ export default function Footer() {
             target="_blank"
             className="text-gray-400 hover:text-[#B57BFF] transition"
           >
-            <FaTwitter />
+            <FaXTwitter />
           </a>
         </div>
 

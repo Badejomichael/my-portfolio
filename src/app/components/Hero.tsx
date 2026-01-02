@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Hero() {
   return (
@@ -108,7 +109,7 @@ export default function Hero() {
         className="mt-8 flex gap-6 text-xl text-gray-500"
       >
         <a href="https://github.com/Badejomichael/" className="hover:text-[#5DE4FF] transition"><FaGithub /></a>
-        <a href="https://x.com/therepublikan_" className="hover:text-[#B57BFF] transition"><FaTwitter /></a>
+        <a href="https://x.com/therepublikan_" className="hover:text-[#B57BFF] transition"><FaXTwitter /></a>
       </motion.div>
     </section>
   );
