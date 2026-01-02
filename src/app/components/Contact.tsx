@@ -211,13 +211,23 @@ export default function Contact() {
           <button
             type="submit"
             disabled={status === "sending"}
-            className="w-full py-3 mt-2 text-black font-semibold rounded-xl
-            bg-gradient-to-br from-[#5DE4FF] to-[#B57BFF]
-            hover:scale-[1.03] active:scale-[0.99]
-            transition-all duration-300 disabled:opacity-60"
+            className="
+              w-full py-3 mt-2 rounded-xl
+              bg-[#111115]
+              border border-[#5DE4FF]/40
+              text-[#5DE4FF] font-medium
+              shadow-[0_0_0_rgba(93,228,255,0)]
+              hover:shadow-[0_0_25px_rgba(93,228,255,0.25)]
+              hover:bg-[#0f1118]
+              hover:scale-[1.02]
+              active:scale-[0.99]
+              transition-all duration-300
+              disabled:opacity-50 disabled:hover:scale-100
+            "
           >
             {status === "sending" ? "Sending..." : "Send Message"}
           </button>
+
         </form>
 
         <a
