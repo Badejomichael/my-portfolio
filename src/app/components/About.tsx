@@ -60,7 +60,7 @@ export default function About() {
           I’m <span className="text-white font-medium">Michael</span>, a
           frontend developer passionate about building immersive, modern, and
           visually strong interfaces.  
-          I focus on clean execution, subtle animations, and premium dark UI
+          I focus on clean execution, subtle animations, and premium UI
           aesthetics using tools like React, Next.js, Tailwind, and Framer Motion.
           <br />
           <br />
