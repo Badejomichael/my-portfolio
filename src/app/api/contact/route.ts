@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       from: "onboarding@resend.dev",
       to: ["thecodermikel@gmail.com"],
       subject: `New Portfolio Message from ${name}`,
-      reply_to: email,
+      replyTo: email,
       html: `
         <div style="font-family: Arial, Helvetica, sans-serif; color: #111; line-height: 1.6;">
           <h2 style="margin-bottom: 8px;">New Portfolio Contact</h2>
@@ -64,3 +64,4 @@ export async function POST(req: Request) {
     );
   }
 }
+
