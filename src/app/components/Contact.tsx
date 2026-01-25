@@ -4,14 +4,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { FaWhatsapp } from "react-icons/fa";
 
-/* ================================
-   TYPES
-================================ */
 type SendStatus = "idle" | "sending" | "success";
 
-/* ================================
-   STATUS MODAL COMPONENT
-================================ */
 const StatusModal = ({
   status,
   onClose,
@@ -28,13 +22,11 @@ const StatusModal = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {/* Overlay */}
           <div
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           />
 
-          {/* MODAL */}
           <motion.div
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -43,7 +35,6 @@ const StatusModal = ({
             className="relative z-10 bg-[#0d0d12] border border-white/10 rounded-2xl 
             p-10 w-[90%] max-w-sm text-center shadow-[0_0_40px_rgba(0,0,0,0.45)]"
           >
-            {/* SENDING */}
             {status === "sending" && (
               <>
                 <motion.div
@@ -65,7 +56,6 @@ const StatusModal = ({
               </>
             )}
 
-            {/* SUCCESS */}
             {status === "success" && (
               <>
                 <motion.svg
@@ -112,9 +102,6 @@ const StatusModal = ({
   );
 };
 
-/* ================================
-   CONTACT SECTION
-================================ */
 export default function Contact() {
   const [status, setStatus] = useState<SendStatus>("idle");
 
@@ -123,25 +110,31 @@ export default function Contact() {
     const form = e.currentTarget;
 
     try {
-      setStatus("sending"); // open modal immediately
+      setStatus("sending");
 
       const formData = new FormData(form);
-      const data = new URLSearchParams(formData as any);
 
-      await fetch("https://formsubmit.co/michaeladetola40@gmail.com", {
+      const payload = {
+        name: formData.get("name"),
+        email: formData.get("email"),
+        message: formData.get("message"),
+      };
+
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
         },
-        body: data.toString(),
+        body: JSON.stringify(payload),
       });
+
+      if (!res.ok) throw new Error("Failed to send");
 
       form.reset();
       setStatus("success");
-
       setTimeout(() => setStatus("idle"), 3000);
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      console.error(err);
       setStatus("idle");
     }
   };
@@ -151,7 +144,6 @@ export default function Contact() {
       className="w-full py-24 flex flex-col items-center relative"
       id="contact"
     >
-      {/* TITLE */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -165,7 +157,6 @@ export default function Contact() {
         <div className="w-24 h-[3px] bg-[#5DE4FF] mt-3 mx-auto rounded-full" />
       </motion.div>
 
-      {/* CARD */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -174,8 +165,6 @@ export default function Contact() {
         border border-white/10 rounded-2xl p-10 shadow-[0_0_40px_rgba(0,0,0,0.35)]"
       >
         <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-          <input type="hidden" name="_captcha" value="false" />
-
           <div className="flex flex-col gap-2">
             <label className="text-gray-300 text-sm">Name</label>
             <input
@@ -227,7 +216,6 @@ export default function Contact() {
           >
             {status === "sending" ? "Sending..." : "Send Message"}
           </button>
-
         </form>
 
         <a
@@ -240,7 +228,6 @@ export default function Contact() {
         </a>
       </motion.div>
 
-      {/* STATUS MODAL */}
       <StatusModal status={status} onClose={() => setStatus("idle")} />
     </section>
   );
