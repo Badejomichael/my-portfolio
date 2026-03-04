@@ -91,7 +91,7 @@ const StatusModal = ({
                   Message Sent!
                 </h3>
                 <p className="text-gray-400 text-sm">
-                  Thanks for reaching out. 
+                  Thanks for reaching out. I’ll respond soon. 
                 </p>
               </>
             )}
@@ -233,5 +233,5 @@ export default function Contact() {
   );
 }
 
-/* I’ll respond soon. */
+
 
