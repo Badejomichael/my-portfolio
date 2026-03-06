@@ -18,8 +18,8 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Michael - Portfolio",
-  description: "Modern portfolio built with Next.js + TailwindCSS",
+  title: "Michael",
+  description: "Portfolio",
 };
 
 export default function RootLayout({
