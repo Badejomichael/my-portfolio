@@ -57,16 +57,13 @@ export default function About() {
 
         {/* Text */}
         <p className="text-gray-300 leading-relaxed text-lg text-center">
-          I’m <span className="text-white font-medium">Michael</span>, a
-          frontend developer passionate about building immersive, modern, and
-          visually strong interfaces.  
-          I focus on clean execution, subtle animations, and premium UI
-          aesthetics using tools like React, Next.js, Tailwind, and Framer Motion.
-          <br />
-          <br />
-          I also build Web3-focused frontends using RainbowKit for clean wallet
-          connections and smooth user experiences.
-        </p>
+        I’m <span className="text-white font-medium">Michael</span>, a frontend developer and engineer dedicated to building visually striking and highly interactive digital experiences.
+        I combine clean code with refined design to create interfaces that feel fast, fluid, and premium.
+        <br />
+        <br />
+        With expertise in React, Next.js, Tailwind CSS, and Framer Motion, I focus on delivering products that are not just functional but memorable.
+        I also work in the Web3 space, crafting seamless wallet integrations and user-friendly blockchain interfaces.
+      </p>
       </motion.div>
 
       {/* Skills */}

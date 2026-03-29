@@ -4,9 +4,7 @@ import { motion } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
 import { useRef } from "react";
 
-/* ================================
-   PROJECTS
-================================ */
+/* PROJECTS */
 export default function Projects() {
   const projects = [
     {
