@@ -43,5 +43,3 @@ export default function ResumeDownloadButton() {
     </motion.a>
   );
 }
-
-// shadow-[0_0_20px_rgba(93,228,255,0.25)] [html:not(.dark)_&]:shadow-[0_0_20px_rgba(165,91,255,0.15)]
