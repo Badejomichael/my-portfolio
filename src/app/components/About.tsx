@@ -9,11 +9,7 @@ import { TbBrandFramerMotion } from "react-icons/tb";
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="w-full flex flex-col items-center justify-center py-15 md:py-20"
-    >
-      {/* Title */}
+    <section id="about" className="w-full flex flex-col items-center justify-center py-15 md:py-20">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -21,52 +17,40 @@ export default function About() {
         viewport={{ once: true }}
         className="text-center mb-10"
       >
-        <h2 className="text-white text-4xl md:text-5xl font-semibold">
+        <h2 className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 text-4xl md:text-5xl font-semibold">
           About Me
         </h2>
         <div className="w-24 h-[3px] bg-[#a55bff] mt-3 mx-auto rounded-full" />
       </motion.div>
 
-      {/* About Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="
-          max-w-3xl w-full
-          bg-[#111]/60 backdrop-blur-xl
-          border border-white/10
-          rounded-2xl
-          p-8 md:p-10
-          shadow-[0_0_20px_rgba(0,0,0,0.5)]
-        "
+        className="max-w-3xl w-full
+          bg-[#111]/60 dark:bg-[#111]/60 [html:not(.dark)_&]:bg-white/70
+          backdrop-blur-xl
+          border border-white/10 dark:border-white/10 [html:not(.dark)_&]:border-black/10
+          rounded-2xl p-8 md:p-10
+          shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:shadow-[0_0_20px_rgba(0,0,0,0.5)]
+          [html:not(.dark)_&]:shadow-[0_0_20px_rgba(0,0,0,0.08)]"
       >
-        {/* PFP */}
         <div className="flex justify-center mb-6">
-          <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10 shadow-lg">
-            <Image
-              src="/pfp.png"
-              alt="Avatar"
-              width={200}
-              height={200}
-              className="object-cover"
-            />
+          <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10 [html:not(.dark)_&]:border-black/10 shadow-lg">
+            <Image src="/pfp.png" alt="Avatar" width={200} height={200} className="object-cover" />
           </div>
         </div>
 
-        {/* Text */}
-        <p className="text-gray-300 leading-relaxed text-lg text-center">
-        I’m <span className="text-white font-medium">Michael</span>, a frontend developer and engineer dedicated to building visually striking and highly interactive digital experiences.
-        I combine clean code with refined design to create interfaces that feel fast, fluid, and premium.
-        <br />
-        <br />
-        With expertise in React, Next.js, Tailwind CSS, and Framer Motion, I focus on delivering products that are not just functional but memorable.
-        I also work in the Web3 space, crafting seamless wallet integrations and user-friendly blockchain interfaces.
-      </p>
+        <p className="text-gray-300 dark:text-gray-300 [html:not(.dark)_&]:text-gray-600 leading-relaxed text-lg text-center">
+          I'm <span className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 font-medium">Michael</span>, a frontend developer and engineer dedicated to building visually striking and highly interactive digital experiences.
+          I combine clean code with refined design to create interfaces that feel fast, fluid, and premium.
+          <br /><br />
+          With expertise in React, Next.js, Tailwind CSS, and Framer Motion, I focus on delivering products that are not just functional but memorable.
+          I also work in the Web3 space, crafting seamless wallet integrations and user-friendly blockchain interfaces.
+        </p>
       </motion.div>
 
-      {/* Skills */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -91,15 +75,15 @@ function Skill({ icon, label }: { icon: any; label: string }) {
   return (
     <motion.div
       whileHover={{ scale: 1.07 }}
-      className="
-        flex flex-col items-center justify-center
-        bg-[#111]/50 backdrop-blur-xl
-        border border-white/10
+      className="flex flex-col items-center justify-center
+        bg-[#111]/50 dark:bg-[#111]/50 [html:not(.dark)_&]:bg-white/70
+        backdrop-blur-xl
+        border border-white/10 dark:border-white/10 [html:not(.dark)_&]:border-black/10
         px-4 py-6 rounded-xl
-        shadow-[0_0_12px_rgba(0,0,0,0.4)]
-        text-gray-200
-        cursor-default
-      "
+        shadow-[0_0_12px_rgba(0,0,0,0.4)] dark:shadow-[0_0_12px_rgba(0,0,0,0.4)]
+        [html:not(.dark)_&]:shadow-[0_0_12px_rgba(0,0,0,0.06)]
+        text-gray-200 dark:text-gray-200 [html:not(.dark)_&]:text-gray-700
+        cursor-default"
     >
       <div className="text-[#a55bff] mb-2">{icon}</div>
       <span className="text-sm font-medium">{label}</span>

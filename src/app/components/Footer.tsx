@@ -7,9 +7,7 @@ import { FaXTwitter } from "react-icons/fa6";
 export default function Footer() {
   return (
     <footer className="mt-10 pb-10 pt-16 relative">
-      {/* Top glowing line */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#5DE4FF]/20 to-transparent" />
-
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -17,42 +15,27 @@ export default function Footer() {
         transition={{ duration: 0.5 }}
         className="flex flex-col items-center text-center"
       >
-        {/* Name */}
-        <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-white">
+        <h3 className="text-2xl md:text-3xl font-semibold tracking-tight
+          text-white dark:text-white [html:not(.dark)_&]:text-gray-900">
           Michael
         </h3>
-
-        {/* Subtitle */}
-        <p className="mt-2 text-sm text-gray-400">
+        <p className="mt-2 text-sm text-gray-400 [html:not(.dark)_&]:text-gray-500">
           Creative Frontend Developer
         </p>
-
-        {/* Socials */}
         <div className="flex items-center gap-6 mt-6 text-xl">
-          <a
-            href="https://github.com/Badejomichael"
-            target="_blank"
-            className="text-gray-400 hover:text-[#5DE4FF] transition"
-          >
+          <a href="https://github.com/Badejomichael" target="_blank"
+            className="text-gray-400 hover:text-[#5DE4FF] transition">
             <FaGithub />
           </a>
-
-          <a
-            href="https://x.com/therepublikan_"
-            target="_blank"
-            className="text-gray-400 hover:text-[#B57BFF] transition"
-          >
+          <a href="https://x.com/therepublikan_" target="_blank"
+            className="text-gray-400 hover:text-[#B57BFF] transition">
             <FaXTwitter />
           </a>
         </div>
-
-        {/* Bottom text */}
-        <p className="mt-8 text-xs text-gray-500">
+        <p className="mt-8 text-xs text-gray-500 [html:not(.dark)_&]:text-gray-400">
           © {new Date().getFullYear()} Michael. All rights reserved.
         </p>
       </motion.div>
-
-      {/* Bottom glowing line */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#B57BFF]/20 to-transparent" />
     </footer>
   );
