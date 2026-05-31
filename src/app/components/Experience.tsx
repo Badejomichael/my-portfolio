@@ -2,135 +2,159 @@
 
 import { motion } from "framer-motion";
 
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.15 },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+});
+
+const EXPERIENCE = [
+  {
+    period: "2025 — Present",
+    company: "TheCanvas & Mysticsverse",
+    role: "Lead Frontend Engineer",
+    contract: true,
+    desc: "Architected and shipped high-traffic NFT infrastructure serving thousands of concurrent users globally on the Monad network, owning the frontend end-to-end from design system to production deployment.",
+    highlights: [
+      "Built a custom real-time validation engine using Wagmi and RainbowKit for wallet eligibility and minting permissions, achieving zero downtime under peak load.",
+      "Engineered an interactive NFT Trait Mixer with complex dynamic state management, enabling instant preview of thousands of asset combinations with zero perceptible latency.",
+      "Optimized frontend performance for mobile-first environments, improving accessibility scores and reducing interaction friction across all decentralized applications.",
+      "Collaborated directly with stakeholders to translate branding and technical requirements into scalable production-ready component systems.",
+    ],
+    tags: ["Next.js", "TypeScript", "React", "RainbowKit", "Wagmi", "Framer Motion", "Tailwind CSS"],
+  },
+];
+
+const PAD = "max(24px, calc((100vw - 1200px) / 2 + 24px))";
+
 export default function Experience() {
-  const experience = [
-    {
-      company: "TheCanvas",
-      role: "Frontend Developer",
-      year: "2025",
-      accent: "#a55bff",
-      accentBg: "rgba(165,91,255,0.12)",
-      accentBorder: "rgba(165,91,255,0.25)",
-      accentText: "#c89dff",
-      glowLine: "rgba(165,91,255,0.4)",
-      desc: "Built and delivered the full frontend experience for TheCanvas NFT with advanced interactive tools and seamless Web3 integration.",
-      highlights: [
-        "Developed the complete production website",
-        "Implemented wallet connection & Web3 interactions",
-        "Built an eligibility checker system",
-        "Created a custom NFT trait mixer",
-      ],
-      tags: ["Next.js", "RainbowKit", "Wagmi", "Framer Motion"],
-    },
-    {
-      company: "Mysticsverse",
-      role: "Frontend Developer",
-      year: "2025",
-      accent: "#5DE4FF",
-      accentBg: "rgba(93,228,255,0.1)",
-      accentBorder: "rgba(93,228,255,0.2)",
-      accentText: "#5DE4FF",
-      glowLine: "rgba(93,228,255,0.4)",
-      desc: "Engineered a responsive platform for Mysticsverse NFT focused on performance, smooth animations, and intuitive blockchain interactions.",
-      highlights: [
-        "Built the full frontend architecture",
-        "Implemented wallet connection & Web3 interactions",
-        "Optimized UI performance and responsiveness",
-      ],
-      tags: ["Next.js", "TypeScript", "Web3 UX", "Tailwind CSS"],
-    },
-  ];
-
   return (
-    <section className="w-full px-6 md:px-20 lg:px-40 py-20" id="experience">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 text-4xl md:text-5xl font-semibold">
-          Experience
-        </h2>
-        <div className="w-24 h-[3px] bg-[#a55bff] mt-3 mx-auto rounded-full" />
-      </motion.div>
+    <section id="experience" className="section-pad relative w-full overflow-hidden">
+      {/* Glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute right-0 bottom-1/4 w-[380px] h-[380px] rounded-full"
+        style={{
+          background: "radial-gradient(circle, rgba(255,77,109,0.05) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
 
-      <div className="relative flex flex-col">
-        <div className="absolute left-[27px] top-10 bottom-10 w-px bg-gradient-to-b from-transparent via-[#a55bff]/30 to-transparent hidden md:block" />
+      <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
-        {experience.map((exp, i) => (
-          <motion.div
-            key={exp.company}
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: i * 0.1 }}
-            viewport={{ once: true }}
-            className={`flex gap-8 ${i < experience.length - 1 ? "pb-12" : ""}`}
-          >
-            <div className="hidden md:flex flex-col items-center w-14 flex-shrink-0">
-              <div
-                className="w-3.5 h-3.5 rounded-full mt-6 z-10 flex-shrink-0"
-                style={{ background: exp.accent, boxShadow: `0 0 0 4px ${exp.accentBg}` }}
-              />
-            </div>
+        {/* Header */}
+        <motion.div {...rise(0)} style={{ marginBottom: "56px" }}>
+          <p className="eyebrow" style={{ marginBottom: "16px" }}>Experience</p>
+          <h2 className="section-heading">
+            Where I have{" "}
+            <span style={{ color: "var(--accent)" }}>built.</span>
+          </h2>
+        </motion.div>
 
-            <div
-              className="flex-1 rounded-2xl p-7 border relative overflow-hidden
-                bg-white/[0.03] dark:bg-white/[0.03] [html:not(.dark)_&]:bg-white/70
-                hover:border-white/15 [html:not(.dark)_&]:hover:border-black/15
-                transition-colors duration-300"
-              style={{ borderColor: "rgba(255,255,255,0.08)" }}
+        {/* Experience list */}
+        <div className="flex flex-col" style={{ gap: "0" }}>
+          {EXPERIENCE.map((exp, i) => (
+            <motion.div
+              key={exp.company}
+              {...rise(0.1 + i * 0.1)}
+              style={{
+                display: "grid",
+                gridTemplateColumns: "180px 1fr",
+                gap: "clamp(24px, 4vw, 56px)",
+                padding: "40px 0",
+                borderBottom: "1px solid var(--border)",
+              }}
+              className="exp-row"
             >
-              <div
-                className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: `linear-gradient(90deg, transparent, ${exp.glowLine}, transparent)` }}
-              />
+              {/* Left — period */}
+              <div className="flex flex-col" style={{ gap: "8px", paddingTop: "4px" }}>
+                <span
+                  style={{
+                    fontFamily: "var(--font-mono), monospace",
+                    fontSize: "11px",
+                    color: "var(--text-muted)",
+                    letterSpacing: "0.06em",
+                    lineHeight: 1.5,
+                  }}
+                >
+                  {exp.period}
+                </span>
+                {exp.contract && (
+                  <span className="tag" style={{ width: "fit-content" }}>
+                    Contract
+                  </span>
+                )}
+              </div>
 
-              <div className="flex items-start justify-between flex-wrap gap-3 mb-4">
-                <div>
-                  <h3 className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 text-xl font-semibold tracking-tight">
+              {/* Right — content */}
+              <div className="flex flex-col" style={{ gap: "16px" }}>
+                {/* Company + role */}
+                <div className="flex flex-col" style={{ gap: "8px" }}>
+                  <h3
+                    style={{
+                      fontFamily: "var(--font-syne), sans-serif",
+                      fontSize: "clamp(18px, 2.5vw, 24px)",
+                      fontWeight: 700,
+                      letterSpacing: "-0.02em",
+                      color: "var(--text-primary)",
+                      lineHeight: 1.1,
+                    }}
+                  >
                     {exp.company}
                   </h3>
-                  <p className="text-gray-600 [html:not(.dark)_&]:text-gray-400 text-xs mt-0.5">{exp.year}</p>
-                </div>
-                <span
-                  className="text-xs font-medium px-3 py-1.5 rounded-full border"
-                  style={{ background: exp.accentBg, color: exp.accentText, borderColor: exp.accentBorder }}
-                >
-                  {exp.role}
-                </span>
-              </div>
-
-              <p className="text-gray-400 [html:not(.dark)_&]:text-gray-500 text-sm leading-relaxed mb-5">
-                {exp.desc}
-              </p>
-
-              <ul className="space-y-2 mb-5">
-                {exp.highlights.map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-sm text-gray-300 [html:not(.dark)_&]:text-gray-600">
-                    <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: exp.accent }} />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-2 pt-4" style={{ borderTop: "0.5px solid rgba(255,255,255,0.06)" }}>
-                {exp.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[11px] px-2.5 py-1 rounded-full
-                      bg-white/5 dark:bg-white/5 [html:not(.dark)_&]:bg-black/5
-                      text-gray-500 [html:not(.dark)_&]:text-gray-500
-                      border border-white/[0.08] [html:not(.dark)_&]:border-black/[0.08]"
-                  >
-                    {tag}
+                  <span className="tag-accent tag" style={{ width: "fit-content" }}>
+                    {exp.role}
                   </span>
-                ))}
+                </div>
+
+                {/* Description */}
+                <p style={{ fontSize: "14px", lineHeight: 1.8, color: "var(--text-secondary)" }}>
+                  {exp.desc}
+                </p>
+
+                {/* Highlights */}
+                <ul className="flex flex-col" style={{ gap: "10px", listStyle: "none" }}>
+                  {exp.highlights.map((point, pi) => (
+                    <li
+                      key={pi}
+                      className="flex"
+                      style={{ gap: "12px", alignItems: "flex-start" }}
+                    >
+                      <span
+                        style={{
+                          color: "var(--accent)",
+                          fontSize: "14px",
+                          flexShrink: 0,
+                          marginTop: "3px",
+                          lineHeight: 1,
+                        }}
+                      >
+                        →
+                      </span>
+                      <span
+                        style={{
+                          fontSize: "14px",
+                          lineHeight: 1.75,
+                          color: "var(--text-secondary)",
+                        }}
+                      >
+                        {point}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Tags */}
+                <div className="flex flex-wrap" style={{ gap: "6px", marginTop: "4px" }}>
+                  {exp.tags.map((t) => (
+                    <span key={t} className="tag">{t}</span>
+                  ))}
+                </div>
               </div>
-            </div>
-          </motion.div>
-        ))}
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

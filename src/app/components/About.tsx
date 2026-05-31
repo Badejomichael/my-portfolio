@@ -1,92 +1,247 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaReact, FaHtml5, FaCss3Alt } from "react-icons/fa";
-import { SiTailwindcss, SiNextdotjs, SiTypescript } from "react-icons/si";
+import {
+  SiTypescript, SiJavascript, SiHtml5, SiCss3,
+  SiReact, SiNextdotjs, SiTailwindcss, SiFramer,
+  SiSupabase, SiSolana, SiGit, SiGithub, SiVercel,
+} from "react-icons/si";
 import { PiRainbowBold } from "react-icons/pi";
+import { RiBarChartBoxLine } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
+import { TbSchool } from "react-icons/tb";
+
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, amount: 0.2 },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+});
+
+const TOOLS = [
+  { icon: <SiReact size={18} />,              name: "React"          },
+  { icon: <SiNextdotjs size={18} />,          name: "Next.js"        },
+  { icon: <SiTypescript size={18} />,         name: "TypeScript"     },
+  { icon: <SiJavascript size={18} />,         name: "JavaScript"     },
+  { icon: <SiTailwindcss size={18} />,        name: "Tailwind CSS"   },
+  { icon: <TbBrandFramerMotion size={18} />,  name: "Framer Motion"  },
+  { icon: <SiHtml5 size={18} />,              name: "HTML5"          },
+  { icon: <SiCss3 size={18} />,              name: "CSS3"           },
+  { icon: <PiRainbowBold size={18} />,        name: "RainbowKit"     },
+  { icon: <SiSolana size={18} />,             name: "Solana Web3.js" },
+  { icon: <SiSupabase size={18} />,           name: "Supabase"       },
+  { icon: <RiBarChartBoxLine size={18} />,    name: "Recharts"       },
+  { icon: <SiGit size={18} />,               name: "Git"            },
+  { icon: <SiGithub size={18} />,            name: "GitHub"         },
+  { icon: <SiVercel size={18} />,            name: "Vercel"         },
+];
+
+const PAD = "max(24px, calc((100vw - 1200px) / 2 + 24px))";
 
 export default function About() {
   return (
-    <section id="about" className="w-full flex flex-col items-center justify-center py-15 md:py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-        className="text-center mb-10"
-      >
-        <h2 className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 text-4xl md:text-5xl font-semibold">
-          About Me
-        </h2>
-        <div className="w-24 h-[3px] bg-[#a55bff] mt-3 mx-auto rounded-full" />
-      </motion.div>
+    <section id="about" className="section-pad relative w-full overflow-hidden">
 
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="max-w-3xl w-full
-          bg-[#111]/60 dark:bg-[#111]/60 [html:not(.dark)_&]:bg-white/70
-          backdrop-blur-xl
-          border border-white/10 dark:border-white/10 [html:not(.dark)_&]:border-black/10
-          rounded-2xl p-8 md:p-10
-          shadow-[0_0_20px_rgba(0,0,0,0.5)] dark:shadow-[0_0_20px_rgba(0,0,0,0.5)]
-          [html:not(.dark)_&]:shadow-[0_0_20px_rgba(0,0,0,0.08)]"
-      >
-        <div className="flex justify-center mb-6">
-          <div className="w-28 h-28 rounded-full overflow-hidden border border-white/10 [html:not(.dark)_&]:border-black/10 shadow-lg">
-            <Image src="/pfp.png" alt="Avatar" width={200} height={200} className="object-cover" />
-          </div>
+      {/* Glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -left-40 top-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full"
+        style={{
+          background: "radial-gradient(circle, rgba(255,77,109,0.06) 0%, transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+
+      <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
+
+        {/* Header */}
+        <motion.div {...rise(0)} style={{ marginBottom: "56px" }}>
+          <p className="eyebrow" style={{ marginBottom: "16px" }}>About Me</p>
+          <h2 className="section-heading">
+            Turning ideas into
+            <br />
+            <span style={{ color: "var(--accent)" }}>real products.</span>
+          </h2>
+        </motion.div>
+
+        {/* Two column layout */}
+        <div
+          className="grid grid-cols-1 lg:grid-cols-2"
+          style={{ gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }}
+        >
+
+          {/* LEFT — Bio */}
+          <motion.div {...rise(0.1)} className="flex flex-col" style={{ gap: "20px" }}>
+            <p style={{ fontSize: "16px", lineHeight: 1.85 }}>
+              I am{" "}
+              <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>
+                Michael
+              </span>
+              , a Frontend Engineer with 4+ years of experience building
+              production-ready web applications. I specialize in creating
+              performant, accessible and visually polished user interfaces
+              that solve real problems.
+            </p>
+            <p style={{ fontSize: "16px", lineHeight: 1.85 }}>
+              I work across the full frontend spectrum, from crafting scalable
+              design systems and data-rich dashboards to building seamless
+              Web3 experiences. My focus is always on writing clean,
+              maintainable code that teams can build on.
+            </p>
+            <p style={{ fontSize: "16px", lineHeight: 1.85 }}>
+              I thrive in collaborative environments, work well with design and
+              product teams, and take ownership of features from conception to
+              deployment. When the interface is right, users do not notice it.
+              They just{" "}
+              <em style={{ color: "var(--text-primary)", fontWeight: 500 }}>
+                feel it.
+              </em>
+            </p>
+
+            {/* Stats row */}
+            <motion.div
+              {...rise(0.18)}
+              className="grid grid-cols-3"
+              style={{ gap: "10px", marginTop: "8px" }}
+            >
+              {[
+                { value: "4+", label: "Years Exp." },
+                { value: "∞", label: "Problems solved" },
+                { value: "2",  label: "Companies" },
+              ].map((s) => (
+                <div
+                  key={s.label}
+                  className="card card-accent"
+                  style={{ padding: "18px 16px" }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "var(--font-syne), sans-serif",
+                      fontSize: "28px",
+                      fontWeight: 800,
+                      color: "var(--accent)",
+                      lineHeight: 1,
+                      display: "block",
+                    }}
+                  >
+                    {s.value}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-mono), monospace",
+                      fontSize: "10px",
+                      color: "var(--text-muted)",
+                      letterSpacing: "0.06em",
+                      marginTop: "4px",
+                      display: "block",
+                    }}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* RIGHT — Tools */}
+          <motion.div {...rise(0.14)} className="flex flex-col" style={{ gap: "24px" }}>
+
+            {/* Education */}
+            <div
+              className="card"
+              style={{ padding: "18px 20px", display: "flex", alignItems: "center", gap: "14px" }}
+            >
+              <div
+                style={{
+                  width: "36px", height: "36px", borderRadius: "8px",
+                  background: "var(--accent-dim)", color: "var(--accent)",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                <TbSchool size={18} />
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontFamily: "var(--font-syne), sans-serif",
+                    fontSize: "14px", fontWeight: 600,
+                    color: "var(--text-primary)", lineHeight: 1.3,
+                  }}
+                >
+                  B.Eng. Computer Engineering
+                </p>
+                <p
+                  style={{
+                    fontFamily: "var(--font-mono), monospace",
+                    fontSize: "11px", color: "var(--text-muted)", marginTop: "3px",
+                  }}
+                >
+                  University of Benin, Nigeria · Expected 2027
+                </p>
+              </div>
+            </div>
+
+            {/* Tools label */}
+            <p
+              style={{
+                fontFamily: "var(--font-mono), monospace",
+                fontSize: "11px",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                color: "var(--text-muted)",
+              }}
+            >
+              Tools I build with
+            </p>
+
+            {/* Tools grid */}
+            <div
+              className="grid grid-cols-3"
+              style={{ gap: "8px" }}
+            >
+              {TOOLS.map((tool) => (
+                <div
+                  key={tool.name}
+                  className="card"
+                  style={{
+                    padding: "12px 14px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--accent-border)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = `var(--shadow), 0 0 16px var(--accent-glow)`;
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.borderColor = "var(--border)";
+                    (e.currentTarget as HTMLElement).style.boxShadow = "var(--shadow)";
+                  }}
+                >
+                  <span style={{ color: "var(--accent)", flexShrink: 0, display: "flex" }}>
+                    {tool.icon}
+                  </span>
+                  <span
+                    style={{
+                      fontFamily: "var(--font-inter), sans-serif",
+                      fontSize: "12px",
+                      fontWeight: 500,
+                      color: "var(--text-primary)",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {tool.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
-
-        <p className="text-gray-300 dark:text-gray-300 [html:not(.dark)_&]:text-gray-600 leading-relaxed text-lg text-center">
-          I'm <span className="text-white dark:text-white [html:not(.dark)_&]:text-gray-900 font-medium">Michael</span>, a frontend developer and engineer dedicated to building visually striking and highly interactive digital experiences.
-          I combine clean code with refined design to create interfaces that feel fast, fluid, and premium.
-          <br /><br />
-          With expertise in React, Next.js, Tailwind CSS, and Framer Motion, I focus on delivering products that are not just functional but memorable.
-          I also work in the Web3 space, crafting seamless wallet integrations and user-friendly blockchain interfaces.
-        </p>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12"
-      >
-        <Skill icon={<FaReact size={28} />} label="React" />
-        <Skill icon={<SiNextdotjs size={28} />} label="Next.js" />
-        <Skill icon={<SiTypescript size={28} />} label="TypeScript" />
-        <Skill icon={<SiTailwindcss size={28} />} label="Tailwind CSS" />
-        <Skill icon={<FaHtml5 size={28} />} label="HTML" />
-        <Skill icon={<FaCss3Alt size={28} />} label="CSS" />
-        <Skill icon={<PiRainbowBold size={28} />} label="RainbowKit" />
-        <Skill icon={<TbBrandFramerMotion size={28} />} label="Framer Motion" />
-      </motion.div>
+      </div>
     </section>
-  );
-}
-
-function Skill({ icon, label }: { icon: any; label: string }) {
-  return (
-    <motion.div
-      whileHover={{ scale: 1.07 }}
-      className="flex flex-col items-center justify-center
-        bg-[#111]/50 dark:bg-[#111]/50 [html:not(.dark)_&]:bg-white/70
-        backdrop-blur-xl
-        border border-white/10 dark:border-white/10 [html:not(.dark)_&]:border-black/10
-        px-4 py-6 rounded-xl
-        shadow-[0_0_12px_rgba(0,0,0,0.4)] dark:shadow-[0_0_12px_rgba(0,0,0,0.4)]
-        [html:not(.dark)_&]:shadow-[0_0_12px_rgba(0,0,0,0.06)]
-        text-gray-200 dark:text-gray-200 [html:not(.dark)_&]:text-gray-700
-        cursor-default"
-    >
-      <div className="text-[#a55bff] mb-2">{icon}</div>
-      <span className="text-sm font-medium">{label}</span>
-    </motion.div>
   );
 }

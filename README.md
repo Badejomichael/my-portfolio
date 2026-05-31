@@ -1,78 +1,61 @@
-<div align="center">
+# Michael — Frontend Engineer Portfolio
 
-# Michael Badejo — Frontend Developer Portfolio
+A modern, dark-first portfolio built with Next.js, TypeScript and Framer Motion. Showcasing my work, experience and engineering values as a Frontend Engineer.
 
-**A sleek, animated, and performance-focused portfolio built with Next.js 14, TypeScript, and Framer Motion.**
-
-[![Live Site](https://img.shields.io/badge/Live%20Site-Visit-5DE4FF?style=for-the-badge&logo=vercel&logoColor=black)](https://devmichael.netlify.app/)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)](https://nextjs.org)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
-
-</div>
-
----
-
-## Overview
-
-This is my personal portfolio. A dark-first, fully animated frontend showcase built to reflect the quality of work I deliver. It features smooth Framer Motion animations, a system-aware light/dark mode toggle, Web3 project highlights, and a working contact form.
-
----
-
-## Features
-
-- **Dark / Light Mode** — Defaults to the user's system preference on first load; persists choice to `localStorage`
-- **Framer Motion Animations** — Page-level entrance animations, scroll-triggered reveals, and hover micro-interactions throughout
-- **Responsive Design** — Mobile-first layout with a floating glassmorphism navbar and animated hamburger menu
-- **Video Project Showcases** — Auto-playing project demo videos that trigger on scroll entry
-- **Working Contact Form** — Sends messages via `/api/contact` with animated loading and success states
-- **Resume Download** — Fixed floating button with tooltip for one-click CV access
-- **Web3 Projects** — Live dApp links including RainbowKit wallet connection demos
+**Live:** [devmichael.netlify.app](https://devmichael.netlify.app)
 
 ---
 
 ## Tech Stack
 
-| Category | Technologies |
+| Layer | Technology |
 |---|---|
-| Framework | Next.js 14 (App Router) |
+| Framework | Next.js |
 | Language | TypeScript |
-| Styling | Tailwind CSS v4 |
+| Styling | Tailwind CSS + CSS Variables |
 | Animations | Framer Motion |
+| Fonts | Syne, Inter, JetBrains Mono (via next/font/google) |
+| Email | Resend API |
 | Icons | React Icons |
-| Web3 | RainbowKit, Wagmi |
-| Fonts | Inter, Space Grotesk (Google Fonts) |
-| Deployment | Vercel / Netlify |
+| Deployment | Netlify |
+
+---
+
+## Features
+
+- Dark and light mode with system preference detection and localStorage persistence
+- Fully responsive across mobile, tablet and desktop
+- Smooth scroll animations powered by Framer Motion
+- Contact form connected to Resend API with success and error states
+- Auto-playing project video demos
+- Floating resume download button
+- Marquee tech stack strip
+- Accessible — keyboard navigable, focus styles, semantic HTML
 
 ---
 
 ## Project Structure
 
 ```
-my-portfolio/
-├── app/
-│   ├── components/
-│   │   ├── About.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Experience.tsx
-│   │   ├── Footer.tsx
-│   │   ├── Hero.tsx
-│   │   ├── Navbar.tsx
-│   │   ├── Projects.tsx
-│   │   ├── ResumeDownloadButton.tsx
-│   │   └── ThemeProvider.tsx
-│   ├── api/
-│   │   └── contact/
-│   │       └── route.ts
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── public/
-│   ├── pfp.png
-│   ├── resume.pdf
-│   ├── project1.mp4
-│   └── ...
-└── package.json
+src/
+└── app/
+    ├── components/
+    │   ├── Navbar.tsx
+    │   ├── Hero.tsx
+    │   ├── About.tsx
+    │   ├── Projects.tsx
+    │   ├── Experience.tsx
+    │   ├── WhatIBring.tsx
+    │   ├── Contact.tsx
+    │   ├── Footer.tsx
+    │   ├── ResumeDownloadButton.tsx
+    │   └── ThemeProvider.tsx
+    ├── api/
+    │   └── contact/
+    │       └── route.ts
+    ├── globals.css
+    ├── layout.tsx
+    └── page.tsx
 ```
 
 ---
@@ -87,89 +70,88 @@ my-portfolio/
 ### Installation
 
 ```bash
-# Clone the repository
+# Clone the repo
 git clone https://github.com/Badejomichael/my-portfolio.git
 
 # Navigate into the project
-cd your-portfolio-repo
+cd my-portfolio
 
 # Install dependencies
 npm install
+```
 
-# Start the development server
+### Environment Variables
+
+Create a `.env.local` file in the root of the project:
+
+```env
+RESEND_API_KEY=your_resend_api_key_here
+```
+
+Get your free API key at [resend.com](https://resend.com).
+
+### Run Locally
+
+```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
----
+### Build for Production
 
-## Environment Variables
-
-Create a `.env.local` file in the root if your contact form uses an email service (e.g. Resend, Nodemailer):
-
-```env
-RESEND_API_KEY=your_api_key_here
-CONTACT_EMAIL=your@email.com
+```bash
+npm run build
+npm start
 ```
 
 ---
 
-## Featured Projects
+## Public Assets
 
-| Project | Description | Stack |
-|---|---|---|
-| **KalshiForge** | Prediction market simulation platform with financial-grade UX | Next.js, TypeScript, Recharts |
-| **MicroKalshi** | Real-time animated event market dashboard | Next.js, TypeScript, Framer Motion |
-| **ClaimFlow** | Web3 mock airdrop dApp with wallet connection | Next.js, RainbowKit, Wagmi |
-| **Weather Dashboard** | Live weather data UI with responsive layout | React, API |
-| **Chef's Secret** | Recipe explorer powered by Spoonacular API | HTML, CSS, Bootstrap, JS |
+Place the following files in the `/public` directory:
+
+| File | Description |
+|---|---|
+| `pfp.png` | Your profile photo |
+| `resume.pdf` | Your downloadable resume |
+| `videos/earnid.mp4` | EarnID project demo |
+| `videos/zarflow.mp4` | Zarflow project demo |
+| `videos/kalshiforge.mp4` | KalshiForge project demo |
+| `videos/claimflow.mp4` | ClaimFlow project demo |
+| `videos/chefssecret.mp4` | Chef's Secret project demo |
 
 ---
 
-## Light / Dark Mode
+## Sections
 
-Theme is powered by a custom `ThemeProvider` context:
-
-- Reads `prefers-color-scheme` on first visit (system default)
-- Persists user preference to `localStorage`
-- Toggles `dark` class on `<html>` for Tailwind's class-based dark mode
-- Toggle button in the navbar uses `BsSun` / `BsMoon` from `react-icons/bs`
-
-Tailwind v4 dark mode is enabled via:
-
-```css
-@custom-variant dark (&:where(.dark, .dark *));
-```
+| Section | Description |
+|---|---|
+| Hero | Name, title, availability status, CTAs, socials |
+| About | Bio, stats, education, tools stack |
+| Projects | 5 projects with video demos, descriptions and links |
+| Experience | Work history with impact-focused bullet points |
+| What I Bring | Engineering values and principles |
+| Contact | Contact form, email, WhatsApp, availability card |
 
 ---
 
 ## Deployment
 
-This project deploys seamlessly to **Vercel**:
+This portfolio is deployed on Netlify.
 
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-Or connect your GitHub repo directly in the [Vercel dashboard](https://vercel.com/dashboard) for automatic deployments on every push.
+1. Push your code to GitHub
+2. Connect the repository to Netlify
+3. Set the build command to `npm run build`
+4. Set the publish directory to `.next`
+5. Add your `RESEND_API_KEY` environment variable in Netlify dashboard
 
 ---
 
-## Contact
+## License
 
-- **WhatsApp** — [+234 905 326 7316](https://wa.me/+2349053267316)
-- **GitHub** — [@Badejomichael](https://github.com/Badejomichael)
-- **Twitter / X** — [@therepublikan_](https://x.com/therepublikan_)
+This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-<div align="center">
-
-Built with focus and precision by **Michael Badejo** · © 2025
-
-</div>
+Built by [Michael](https://devmichael.netlify.app)

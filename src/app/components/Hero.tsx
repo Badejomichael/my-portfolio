@@ -3,116 +3,114 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { FaGithub } from "react-icons/fa";
+import { FaGithub, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { HiArrowRight } from "react-icons/hi";
+
+const rise = (delay = 0) => ({
+  initial: { opacity: 0, y: 22 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+});
+
+const pop = (delay = 0) => ({
+  initial: { opacity: 0, scale: 0.92 },
+  animate: { opacity: 1, scale: 1 },
+  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+});
+
+const PAD = "max(24px, calc((100vw - 1200px) / 2 + 24px))";
 
 export default function Hero() {
   return (
-    <section
-      id="hero"
-      className="min-h-screen w-full flex flex-col items-center justify-center text-center px-6
-        bg-black dark:bg-black [html:not(.dark)_&]:bg-[#f0f0f7]"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="relative w-40 h-40 md:w-48 md:h-48 md:mt-10"
-      >
-        <div className="absolute inset-0 rounded-full border border-[#5DE4FF]/20 shadow-[0_0_20px_#5DE4FF20]" />
-        <Image
-          src="/pfp.png"
-          alt="profile"
-          fill
-          className="rounded-full object-cover"
-        />
-      </motion.div>
+    <section id="hero" className="relative w-full min-h-screen flex flex-col overflow-hidden" style={{ paddingTop: "80px" }}>
 
-      <motion.h1
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        className="mt-8 text-4xl md:text-5xl font-semibold text-white dark:text-white
-          [html:not(.dark)_&]:text-gray-900 font-space-grotesk"
-      >
-        Michael
-      </motion.h1>
+      {/* Grid bg */}
+      <div aria-hidden className="pointer-events-none absolute inset-0" style={{
+        backgroundImage: `linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)`,
+        backgroundSize: "64px 64px",
+        maskImage: "radial-gradient(ellipse 75% 65% at 65% 40%, black, transparent)",
+        WebkitMaskImage: "radial-gradient(ellipse 75% 65% at 65% 40%, black, transparent)",
+      }} />
 
-      <motion.p
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.18 }}
-        className="mt-3 text-gray-400 dark:text-gray-400 [html:not(.dark)_&]:text-gray-500 text-lg"
-      >
-        Creative Frontend Developer
-      </motion.p>
+      {/* Glow blobs */}
+      <div aria-hidden className="pointer-events-none absolute -top-24 right-0 w-[480px] h-[480px] rounded-full" style={{ background: "radial-gradient(circle, rgba(255,77,109,0.08) 0%, transparent 70%)", filter: "blur(48px)" }} />
+      <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 w-[360px] h-[360px] rounded-full" style={{ background: "radial-gradient(circle, rgba(255,77,109,0.05) 0%, transparent 70%)", filter: "blur(64px)" }} />
 
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.25 }}
-        className="mt-4 max-w-lg text-gray-500 dark:text-gray-500 [html:not(.dark)_&]:text-gray-500
-          text-sm md:text-base leading-relaxed"
-      >
-        I build sleek, animated, and clean user interfaces with a strong focus on
-        performance, modern design, and seamless user experience.
-      </motion.p>
+      {/* Main */}
+      <div className="relative z-10 flex-1 flex items-center" style={{ padding: `0 ${PAD}` }}>
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-14 lg:gap-20 pt-10 lg:pt-0">
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.32 }}
-        className="mt-6 flex gap-4"
-      >
-        <Link
-          href="#contact"
-          className="px-6 py-3 rounded-xl font-medium text-black
-            bg-gradient-to-r from-[#FF8AE2] via-[#5DE4FF] to-[#FFE45E]
-            shadow-[0_0_25px_rgba(255,138,226,0.35)]
-            hover:shadow-[0_0_35px_rgba(255,138,226,0.45)]
-            hover:scale-[1.05] transition-all duration-300"
-        >
-          Hire Me
-        </Link>
+          {/* LEFT */}
+          <div className="flex flex-col gap-6 max-w-xl w-full subtle-hero-michael">
 
-        <Link
-          href="#projects"
-          className="px-6 py-3 rounded-xl font-medium
-            text-white dark:text-white [html:not(.dark)_&]:text-gray-800
-            border border-white/10 dark:border-white/10 [html:not(.dark)_&]:border-black/15
-            bg-[#111]/60 dark:bg-[#111]/60 [html:not(.dark)_&]:bg-white/60
-            backdrop-blur-xl
-            hover:border-[#5DE4FF] [html:not(.dark)_&]:hover:border-[#a55bff]
-            hover:text-[#5DE4FF] [html:not(.dark)_&]:hover:text-[#a55bff]
-            hover:scale-[1.03] transition-all duration-300"
-        >
-          Projects
-        </Link>
-      </motion.div>
+            <motion.p {...rise(0.18)} style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}>
+              Michael
+            </motion.p>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        className="mt-8 flex gap-6 text-xl text-gray-500"
-      >
-        <a
-          href="https://github.com/Badejomichael/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#5DE4FF] transition"
-        >
-          <FaGithub />
-        </a>
-        <a
-          href="https://x.com/therepublikan_"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hover:text-[#B57BFF] transition"
-        >
-          <FaXTwitter />
-        </a>
-      </motion.div>
+            <motion.h1 {...rise(0.24)} style={{ fontFamily: "Syne, sans-serif", fontSize: "clamp(45px, 8.5vw, 70px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "var(--text-primary)" }}>
+              Frontend<br />
+              <span style={{ color: "var(--accent)" }}>Engineer</span>
+              <span style={{ color: "var(--text-primary)" }}>.</span>
+            </motion.h1>
+
+            <motion.p
+              {...rise(0.32)}
+              style={{
+                fontSize: "16px",
+                lineHeight: 1.75,
+                color: "var(--text-secondary)",
+                maxWidth: "400px",
+              }}
+            >
+              I build the frontend layer that makes products feel{" "}
+              <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>
+                world-class.
+              </span>{" "}
+              Fast, scalable and crafted to the highest standard.
+            </motion.p>
+
+            <motion.div {...rise(0.38)} className="flex flex-wrap items-center gap-3">
+              <Link href="#projects" className="btn-primary">
+                View My Work <HiArrowRight size={14} />
+              </Link>
+              <Link href="#contact" className="btn-secondary">
+                Contact Me
+              </Link>
+            </motion.div>
+
+            <motion.div {...rise(0.44)} className="flex items-center gap-2.5">
+              {[
+                { href: "https://github.com/Badejomichael", icon: <FaGithub size={15} />, label: "GitHub" },
+                { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={14} />, label: "X"      },
+                { href: "https://wa.me/+2349053267316",      icon: <FaWhatsapp size={15} />, label: "WhatsApp" },
+              ].map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-icon">
+                  {s.icon}
+                </a>
+              ))}
+              <span className="ml-1 w-px h-4" style={{ background: "var(--border-mid)" }} />
+              <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "11px", color: "var(--text-muted)" }}>
+                thecodermikel@gmail.com
+              </span>
+            </motion.div>
+          </div>
+
+          {/* RIGHT — Photo */}
+          <motion.div {...pop(0.3)} className="relative flex-shrink-0">
+            {/* Corner frames */}
+            <div className="absolute -top-3 -left-3 w-12 h-12 pointer-events-none" style={{ borderTop: "2px solid var(--accent)", borderLeft: "2px solid var(--accent)", borderRadius: "6px 0 0 0" }} />
+            <div className="absolute -bottom-3 -right-3 w-12 h-12 pointer-events-none" style={{ borderBottom: "2px solid var(--accent)", borderRight: "2px solid var(--accent)", borderRadius: "0 0 6px 0" }} />
+
+            <div
+              className="relative overflow-hidden rounded-2xl border"
+              style={{ width: "clamp(240px, 28vw, 340px)", height: "clamp(300px, 35vw, 420px)", borderColor: "var(--border-mid)", boxShadow: "var(--shadow-lg)" }}
+            >
+              <Image src="/pfp.png" alt="Michael — Frontend Engineer" fill priority className="object-cover object-top" />
+            </div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 }

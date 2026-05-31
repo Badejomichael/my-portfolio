@@ -1,45 +1,78 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { HiOutlineDocumentArrowDown } from "react-icons/hi2";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { TbFileCv } from "react-icons/tb";
 
 export default function ResumeDownloadButton() {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <motion.a
-      href="/resume.pdf"
+      href="/Michael_FrontendEngineer_Resume.pdf"
       download
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.8 }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.95 }}
-      className="fixed bottom-6 left-6 z-50 group"
+      initial={{ opacity: 0, y: 16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
       aria-label="Download Resume"
+      className="fixed bottom-6 left-6 z-50 flex items-center overflow-hidden"
+      style={{
+        height: "42px",
+        borderRadius: "8px",
+        background: "var(--bg-card)",
+        border: "1px solid var(--border-mid)",
+        boxShadow: "var(--shadow-lg)",
+        textDecoration: "none",
+        cursor: "pointer",
+        transition: "border-color 0.25s ease, box-shadow 0.25s ease",
+        ...(hovered && {
+          borderColor: "var(--accent-border)",
+          boxShadow: `var(--shadow-lg), 0 0 20px var(--accent-glow)`,
+        }),
+      }}
     >
-      <div className="w-14 h-14 flex items-center justify-center rounded-2xl
-        backdrop-blur-xl
-        bg-[#111]/70 dark:bg-[#111]/70 [html:not(.dark)_&]:bg-white/80
-        border border-white/10 [html:not(.dark)_&]:border-black/10
-        hover:shadow-[0_0_30px_rgba(181,123,255,0.35)]
-        transition-all duration-300"
+      {/* Icon */}
+      <div
+        style={{
+          width: "42px",
+          height: "42px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+          color: hovered ? "var(--accent)" : "var(--text-muted)",
+          transition: "color 0.25s ease",
+        }}
       >
-        <HiOutlineDocumentArrowDown
-          size={26}
-          className="text-[#5DE4FF] dark:text-[#5DE4FF] [html:not(.dark)_&]:text-[#a55bff]
-            group-hover:text-[#B57BFF] transition-colors duration-300"
-        />
+        <TbFileCv size={18} />
       </div>
-      <span className="pointer-events-none absolute left-full bottom-1/2 translate-y-1/2 ml-4
-        whitespace-nowrap px-3 py-1.5 text-sm rounded-lg
-        bg-[#111]/80 dark:bg-[#111]/80 [html:not(.dark)_&]:bg-white/90
-        backdrop-blur-md
-        border border-white/10 [html:not(.dark)_&]:border-black/10
-        text-gray-200 [html:not(.dark)_&]:text-gray-700
-        opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100
-        transition-all duration-300 shadow-lg"
-      >
-        Download Resume
-      </span>
+
+      {/* Expanding label */}
+      <AnimatePresence>
+        {hovered && (
+          <motion.span
+            initial={{ width: 0, opacity: 0 }}
+            animate={{ width: "auto", opacity: 1 }}
+            exit={{ width: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              fontFamily: "var(--font-mono), monospace",
+              fontSize: "11px",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              color: "var(--accent)",
+              whiteSpace: "nowrap",
+              paddingRight: "14px",
+              overflow: "hidden",
+              display: "block",
+            }}
+          >
+            Resume
+          </motion.span>
+        )}
+      </AnimatePresence>
     </motion.a>
   );
 }
