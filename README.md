@@ -1,6 +1,6 @@
 # Michael — Frontend Engineer Portfolio
 
-A modern, dark-first portfolio built with Next.js, TypeScript and Framer Motion. Showcasing my work, experience and engineering values as a Frontend Engineer.
+A modern portfolio built with Next.js, TypeScript and Framer Motion. Showcasing my work, experience and engineering values as a Frontend Engineer.
 
 **Live:** [devmichael.netlify.app](https://devmichael.netlify.app)
 
