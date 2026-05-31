@@ -9,12 +9,11 @@ import {
 import { PiRainbowBold } from "react-icons/pi";
 import { RiBarChartBoxLine } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
-import { TbSchool } from "react-icons/tb";
 
 const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
+  initial: { opacity: 0, y: 24 },
   whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
+  viewport: { once: true, amount: 0.15 },
   transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
 });
 
@@ -106,7 +105,7 @@ export default function About() {
             >
               {[
                 { value: "4+", label: "Years Exp." },
-                { value: "∞", label: "Problems solved" },
+                { value: "∞", label: "Problems Solved" },
                 { value: "2",  label: "Companies" },
               ].map((s) => (
                 <div
@@ -157,9 +156,11 @@ export default function About() {
                   background: "var(--accent-dim)", color: "var(--accent)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0,
+                  fontFamily: "var(--font-syne), sans-serif",
+                  fontSize: "15px", fontWeight: 800,
                 }}
               >
-                <TbSchool size={18} />
+                ↗
               </div>
               <div>
                 <p
