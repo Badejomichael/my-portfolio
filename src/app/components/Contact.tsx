@@ -2,16 +2,11 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { FadeUp } from "./MotionDiv";
 import { FaGithub, FaWhatsapp } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { HiArrowRight } from "react-icons/hi";
 
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
 
 type SendStatus = "idle" | "sending" | "success" | "error";
 
@@ -84,7 +79,7 @@ export default function Contact() {
       <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
         {/* Header */}
-        <motion.div {...rise(0)} style={{ marginBottom: "56px" }}>
+        <FadeUp delay={0} style={{ marginBottom: "56px" }}>
           <p className="eyebrow" style={{ marginBottom: "16px" }}>Contact</p>
           <h2 className="section-heading">
             Let us build
@@ -103,7 +98,7 @@ export default function Contact() {
             Open to new opportunities, collaborations and interesting problems
             to solve. Drop a message and I will get back to you.
           </p>
-        </motion.div>
+        </FadeUp>
 
         {/* Grid */}
         <div
@@ -111,7 +106,7 @@ export default function Contact() {
           style={{ gap: "clamp(40px, 6vw, 80px)", alignItems: "start" }}
         >
           {/* LEFT — Form */}
-          <motion.div {...rise(0.1)}>
+          <FadeUp delay={0.1}>
             <form
               onSubmit={handleSubmit}
               className="flex flex-col"
@@ -214,11 +209,10 @@ export default function Contact() {
                 )}
               </AnimatePresence>
             </form>
-          </motion.div>
+          </FadeUp>
 
           {/* RIGHT — Info */}
-          <motion.div
-            {...rise(0.18)}
+          <FadeUp delay={0.18}
             className="flex flex-col"
             style={{ gap: "32px" }}
           >
@@ -333,7 +327,7 @@ export default function Contact() {
                 collaborations. Based in Nigeria, working globally.
               </p>
             </div>
-          </motion.div>
+          </FadeUp>
         </div>
       </div>
     </section>

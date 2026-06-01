@@ -1,14 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { FadeUp } from "./MotionDiv";
 import { TbBolt, TbCode, TbCube, TbDeviceMobile } from "react-icons/tb";
-
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
 
 const VALUES = [
   {
@@ -54,8 +47,7 @@ export default function WhatIBring() {
       <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
         {/* Header */}
-        <motion.div
-          {...rise(0)}
+        <FadeUp delay={0}
           style={{ marginBottom: "56px", maxWidth: "600px" }}
         >
           <p className="eyebrow" style={{ marginBottom: "16px" }}>What I Bring</p>
@@ -74,7 +66,7 @@ export default function WhatIBring() {
             The principles I carry into every project, every team and every line
             of code I write.
           </p>
-        </motion.div>
+        </FadeUp>
 
         {/* Cards grid */}
         <div
@@ -82,9 +74,9 @@ export default function WhatIBring() {
           style={{ gap: "12px" }}
         >
           {VALUES.map((v, i) => (
-            <motion.div
+            <FadeUp
               key={v.title}
-              {...rise(0.08 + i * 0.08)}
+              delay={(0.08 + i * 0.08)}
               className="card card-accent"
               style={{ padding: "28px 24px" }}
             >
@@ -131,7 +123,7 @@ export default function WhatIBring() {
               >
                 {v.desc}
               </p>
-            </motion.div>
+            </FadeUp>
           ))}
         </div>
       </div>

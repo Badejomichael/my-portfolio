@@ -10,16 +10,17 @@ import { HiArrowRight } from "react-icons/hi";
 const rise = (delay = 0) => ({
   initial: { opacity: 0, y: 22 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.6, delay, ease: "easeOut" as const },
 });
 
 const pop = (delay = 0) => ({
   initial: { opacity: 0, scale: 0.92 },
   animate: { opacity: 1, scale: 1 },
-  transition: { duration: 0.55, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.55, delay, ease: "easeOut" as const },
 });
 
 const PAD = "max(24px, calc((100vw - 1200px) / 2 + 24px))";
+
 
 export default function Hero() {
   return (
@@ -44,11 +45,11 @@ export default function Hero() {
           {/* LEFT */}
           <div className="flex flex-col gap-6 max-w-xl w-full subtle-hero-michael">
 
-            <motion.p {...rise(0.18)} style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}>
+            <motion.p {...rise(0.18)} style={{ fontFamily: "var(--font-mono), monospace", fontSize: "11px", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--text-muted)" }}>
               Michael
             </motion.p>
 
-            <motion.h1 {...rise(0.24)} style={{ fontFamily: "Syne, sans-serif", fontSize: "clamp(45px, 8.5vw, 70px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "var(--text-primary)" }}>
+            <motion.h1 {...rise(0.24)} style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: "clamp(45px, 8.5vw, 70px)", fontWeight: 800, letterSpacing: "-0.04em", lineHeight: 0.95, color: "var(--text-primary)" }}>
               Frontend<br />
               <span style={{ color: "var(--accent)" }}>Engineer</span>
               <span style={{ color: "var(--text-primary)" }}>.</span>
@@ -56,12 +57,7 @@ export default function Hero() {
 
             <motion.p
               {...rise(0.32)}
-              style={{
-                fontSize: "16px",
-                lineHeight: 1.75,
-                color: "var(--text-secondary)",
-                maxWidth: "400px",
-              }}
+              style={{ fontSize: "16px", lineHeight: 1.75, color: "var(--text-secondary)", maxWidth: "400px" }}
             >
               I build the frontend layer that makes products feel{" "}
               <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>
@@ -79,10 +75,10 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            <motion.div {...rise(0.44)} className="flex items-center gap-2.5">
+            <motion.div {...rise(0.44)} className="flex items-center gap-2.5 flex-wrap">
               {[
-                { href: "https://github.com/Badejomichael", icon: <FaGithub size={15} />, label: "GitHub" },
-                { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={14} />, label: "X"      },
+                { href: "https://github.com/Badejomichael", icon: <FaGithub size={15} />,  label: "GitHub"   },
+                { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={14} />, label: "X"        },
                 { href: "https://wa.me/+2349053267316",      icon: <FaWhatsapp size={15} />, label: "WhatsApp" },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-icon">
@@ -90,7 +86,7 @@ export default function Hero() {
                 </a>
               ))}
               <span className="ml-1 w-px h-4" style={{ background: "var(--border-mid)" }} />
-              <span style={{ fontFamily: "JetBrains Mono, monospace", fontSize: "11px", color: "var(--text-muted)" }}>
+              <span style={{ fontFamily: "var(--font-mono), monospace", fontSize: "11px", color: "var(--text-muted)" }}>
                 thecodermikel@gmail.com
               </span>
             </motion.div>
@@ -98,9 +94,8 @@ export default function Hero() {
 
           {/* RIGHT — Photo */}
           <motion.div {...pop(0.3)} className="relative flex-shrink-0">
-            {/* Corner frames */}
-            <div className="absolute -top-3 -left-3 w-12 h-12 pointer-events-none" style={{ borderTop: "2px solid var(--accent)", borderLeft: "2px solid var(--accent)", borderRadius: "6px 0 0 0" }} />
-            <div className="absolute -bottom-3 -right-3 w-12 h-12 pointer-events-none" style={{ borderBottom: "2px solid var(--accent)", borderRight: "2px solid var(--accent)", borderRadius: "0 0 6px 0" }} />
+            <div className="absolute pointer-events-none" style={{ top: "-12px", left: "-12px", width: "44px", height: "44px", borderTop: "2px solid var(--accent)", borderLeft: "2px solid var(--accent)", borderRadius: "6px 0 0 0" }} />
+            <div className="absolute pointer-events-none" style={{ bottom: "-12px", right: "-12px", width: "44px", height: "44px", borderBottom: "2px solid var(--accent)", borderRight: "2px solid var(--accent)", borderRadius: "0 0 6px 0" }} />
 
             <div
               className="relative overflow-hidden rounded-2xl border"

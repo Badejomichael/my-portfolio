@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { FadeUp } from "./MotionDiv";
 import {
   SiTypescript, SiJavascript, SiHtml5, SiCss3,
   SiReact, SiNextdotjs, SiTailwindcss, SiFramer,
@@ -9,13 +9,8 @@ import {
 import { PiRainbowBold } from "react-icons/pi";
 import { RiBarChartBoxLine } from "react-icons/ri";
 import { TbBrandFramerMotion } from "react-icons/tb";
+import { TbSchool } from "react-icons/tb";
 
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
 
 const TOOLS = [
   { icon: <SiReact size={18} />,              name: "React"          },
@@ -54,14 +49,14 @@ export default function About() {
       <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
         {/* Header */}
-        <motion.div {...rise(0)} style={{ marginBottom: "56px" }}>
+        <FadeUp delay={0} style={{ marginBottom: "56px" }}>
           <p className="eyebrow" style={{ marginBottom: "16px" }}>About Me</p>
           <h2 className="section-heading">
             Turning ideas into
             <br />
             <span style={{ color: "var(--accent)" }}>real products.</span>
           </h2>
-        </motion.div>
+        </FadeUp>
 
         {/* Two column layout */}
         <div
@@ -70,7 +65,7 @@ export default function About() {
         >
 
           {/* LEFT — Bio */}
-          <motion.div {...rise(0.1)} className="flex flex-col" style={{ gap: "20px" }}>
+          <FadeUp delay={0.1} className="flex flex-col" style={{ gap: "20px" }}>
             <p style={{ fontSize: "16px", lineHeight: 1.85 }}>
               I am{" "}
               <span style={{ color: "var(--text-primary)", fontWeight: 600 }}>
@@ -98,14 +93,13 @@ export default function About() {
             </p>
 
             {/* Stats row */}
-            <motion.div
-              {...rise(0.18)}
+            <FadeUp delay={0.18}
               className="grid grid-cols-3"
               style={{ gap: "10px", marginTop: "8px" }}
             >
               {[
                 { value: "4+", label: "Years Exp." },
-                { value: "∞", label: "Problems Solved" },
+                { value: "∞", label: "Problems solved" },
                 { value: "2",  label: "Companies" },
               ].map((s) => (
                 <div
@@ -139,11 +133,11 @@ export default function About() {
                   </span>
                 </div>
               ))}
-            </motion.div>
-          </motion.div>
+            </FadeUp>
+          </FadeUp>
 
           {/* RIGHT — Tools */}
-          <motion.div {...rise(0.14)} className="flex flex-col" style={{ gap: "24px" }}>
+          <FadeUp delay={0.14} className="flex flex-col" style={{ gap: "24px" }}>
 
             {/* Education */}
             <div
@@ -156,11 +150,9 @@ export default function About() {
                   background: "var(--accent-dim)", color: "var(--accent)",
                   display: "flex", alignItems: "center", justifyContent: "center",
                   flexShrink: 0,
-                  fontFamily: "var(--font-syne), sans-serif",
-                  fontSize: "15px", fontWeight: 800,
                 }}
               >
-                ↗
+                <TbSchool size={18} />
               </div>
               <div>
                 <p
@@ -240,7 +232,7 @@ export default function About() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </FadeUp>
         </div>
       </div>
     </section>

@@ -1,13 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
-
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
+import { FadeUp } from "./MotionDiv";
 
 const EXPERIENCE = [
   {
@@ -44,20 +37,20 @@ export default function Experience() {
       <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
         {/* Header */}
-        <motion.div {...rise(0)} style={{ marginBottom: "56px" }}>
+        <FadeUp delay={0}  style={{ marginBottom: "56px" }}>
           <p className="eyebrow" style={{ marginBottom: "16px" }}>Experience</p>
           <h2 className="section-heading">
             Where I have{" "}
             <span style={{ color: "var(--accent)" }}>built.</span>
           </h2>
-        </motion.div>
+        </FadeUp>
 
         {/* Experience list */}
         <div className="flex flex-col" style={{ gap: "0" }}>
           {EXPERIENCE.map((exp, i) => (
-            <motion.div
+            <FadeUp
               key={exp.company}
-              {...rise(0.1 + i * 0.1)}
+              delay={(0.1 + i * 0.1)}
               style={{
                 display: "grid",
                 gridTemplateColumns: "180px 1fr",
@@ -152,7 +145,7 @@ export default function Experience() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </FadeUp>
           ))}
         </div>
       </div>

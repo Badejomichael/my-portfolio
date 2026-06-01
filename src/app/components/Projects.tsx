@@ -2,15 +2,9 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import { FadeUp } from "./MotionDiv";
 import { FaGithub } from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
-
-const rise = (delay = 0) => ({
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
 
 const PROJECTS = [
   {
@@ -78,13 +72,13 @@ export default function Projects() {
       <div className="relative z-10 w-full" style={{ padding: `0 ${PAD}` }}>
 
         {/* Header */}
-        <motion.div {...rise(0)} style={{ marginBottom: "64px" }}>
+        <FadeUp delay={0.1} style={{ marginBottom: "64px" }}>
           <p className="eyebrow" style={{ marginBottom: "16px" }}>Work</p>
           <h2 className="section-heading">
             Selected{" "}
             <span style={{ color: "var(--accent)" }}>projects.</span>
           </h2>
-        </motion.div>
+        </FadeUp>
 
         {/* Projects list */}
         <div className="flex flex-col" style={{ gap: "0" }}>
