@@ -78,7 +78,7 @@ export default function Hero() {
             <motion.div {...rise(0.44)} className="flex items-center gap-2.5 flex-wrap">
               {[
                 { href: "https://github.com/Badejomichael", icon: <FaGithub size={15} />,  label: "GitHub"   },
-                { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={14} />, label: "X"        },
+                { href: "https://x.com/myikhael",     icon: <FaXTwitter size={14} />, label: "X"        },
                 { href: "https://wa.me/+2349053267316",      icon: <FaWhatsapp size={15} />, label: "WhatsApp" },
               ].map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} className="btn-icon">

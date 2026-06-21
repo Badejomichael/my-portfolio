@@ -287,7 +287,7 @@ export default function Contact() {
               <div className="flex items-center" style={{ gap: "10px" }}>
                 {[
                   { href: "https://github.com/Badejomichael", icon: <FaGithub size={16} />, label: "GitHub" },
-                  { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={15} />, label: "X" },
+                  { href: "https://x.com/myikhael",     icon: <FaXTwitter size={15} />, label: "X" },
                   { href: "https://wa.me/+2349053267316",      icon: <FaWhatsapp size={16} />, label: "WhatsApp" },
                 ].map((s) => (
                   <a

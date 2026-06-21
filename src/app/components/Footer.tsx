@@ -93,7 +93,7 @@ export default function Footer() {
           <div className="flex items-center" style={{ gap: "8px" }}>
             {[
               { href: "https://github.com/Badejomichael", icon: <FaGithub size={15} />,  label: "GitHub"   },
-              { href: "https://x.com/therepublikan_",     icon: <FaXTwitter size={14} />, label: "X"        },
+              { href: "https://x.com/myikhael",     icon: <FaXTwitter size={14} />, label: "X"        },
               { href: "https://wa.me/+2349053267316",      icon: <FaWhatsapp size={15} />, label: "WhatsApp" },
             ].map((s) => (
               <a
